@@ -17,6 +17,9 @@ type Musik struct {
 type ArrMusik [NMAX]Musik
 
 func inputData(A *ArrMusik, n *int) {
+	// IS : Data musik dan jumlah data telah tersedia.
+	// FS : Data musik baru ditambahkan ke array dan jumlah data bertambah.
+
 	var jumlah int
 
 	fmt.Print("Jumlah musik yang ingin ditambahkan: ")
@@ -44,12 +47,17 @@ func inputData(A *ArrMusik, n *int) {
 }
 
 func tampilData(A ArrMusik, n int) {
+	// IS : Data musik tersedia dalam array.
+	// FS : Data musik ditampilkan ke layar.
+
 	if n == 0 {
 		fmt.Println("Data kosong")
 	} else {
 		fmt.Println("\n===== DAFTAR MUSIK =====")
+		fmt.Printf("%-3s| %-16s | %-16s | %-16s | %s\n", "no", "Judul", "Artis", "Genre", "Rating")
+		fmt.Println("---------------------------------------------------------------------")
 		for i := 0; i < n; i++ {
-			fmt.Printf("%d. %s | %s | %s | %d\n",
+			fmt.Printf("%-3d| %-16s | %-16s | %-16s | %d\n",
 				i+1,
 				A[i].Judul,
 				A[i].Artis,
@@ -60,6 +68,9 @@ func tampilData(A ArrMusik, n int) {
 }
 
 func sequentialSearch(A ArrMusik, n int, judul string) int {
+	// IS : Data musik tersedia dan judul yang dicari sudah diberikan.
+	// FS : Mengembalikan indeks lagu jika ditemukan, atau -1 jika tidak ditemukan.
+
 	idx := -1
 	i := 0
 
@@ -74,6 +85,9 @@ func sequentialSearch(A ArrMusik, n int, judul string) int {
 }
 
 func editMusik(A *ArrMusik, n int) {
+	// IS : Data musik tersedia dan pengguna memasukkan judul lagu.
+	// FS : Data lagu diperbarui jika ditemukan.
+
 	var judul string
 
 	fmt.Print("Masukkan judul yang ingin diedit: ")
@@ -101,6 +115,9 @@ func editMusik(A *ArrMusik, n int) {
 }
 
 func hapusMusik(A *ArrMusik, n *int) {
+	// IS : Data musik tersedia dan pengguna memasukkan judul lagu.
+	// FS : Data lagu dihapus dan jumlah data berkurang jika ditemukan.
+
 	var judul string
 
 	fmt.Print("Masukkan judul yang ingin dihapus: ")
@@ -121,6 +138,9 @@ func hapusMusik(A *ArrMusik, n *int) {
 }
 
 func insertionSortJudul(A *ArrMusik, n int) {
+	// IS : Data musik belum terurut berdasarkan judul.
+	// FS : Data musik terurut berdasarkan judul secara ascending.
+
 	var temp Musik
 	var j int
 
@@ -138,6 +158,9 @@ func insertionSortJudul(A *ArrMusik, n int) {
 }
 
 func binarySearch(A ArrMusik, n int, judul string) int {
+	// IS : Data musik telah terurut berdasarkan judul dan judul pencarian tersedia.
+	// FS : Mengembalikan indeks lagu jika ditemukan, atau -1 jika tidak ditemukan.
+
 	left := 0
 	right := n - 1
 	found := -1
@@ -158,6 +181,9 @@ func binarySearch(A ArrMusik, n int, judul string) int {
 }
 
 func cariLagu(A ArrMusik, n int) {
+	// IS : Data musik tersedia dan pengguna memasukkan judul lagu.
+	// FS : Data lagu ditampilkan jika ditemukan.
+
 	var judul string
 	var temp ArrMusik
 
@@ -184,6 +210,9 @@ func cariLagu(A ArrMusik, n int) {
 }
 
 func selectionSortAsc(A *ArrMusik, n int) {
+	// IS : Data musik belum terurut berdasarkan rating.
+	// FS : Data musik terurut berdasarkan rating ascending.
+
 	var min int
 	var temp Musik
 
@@ -203,6 +232,9 @@ func selectionSortAsc(A *ArrMusik, n int) {
 }
 
 func selectionSortDesc(A *ArrMusik, n int) {
+	// IS : Data musik belum terurut berdasarkan rating.
+	// FS : Data musik terurut berdasarkan rating descending.
+
 	var max int
 	var temp Musik
 
@@ -222,6 +254,9 @@ func selectionSortDesc(A *ArrMusik, n int) {
 }
 
 func urutRating(A *ArrMusik, n int) {
+	// IS : Data musik tersedia dan pengguna memilih jenis pengurutan.
+	// FS : Data musik terurut berdasarkan rating sesuai pilihan.
+
 	var pilih int
 
 	fmt.Println("\n1. Ascending")
@@ -232,15 +267,20 @@ func urutRating(A *ArrMusik, n int) {
 	if pilih == 1 {
 		selectionSortAsc(A, n)
 		fmt.Println("Data berhasil diurutkan ascending")
+		tampilData(*A, n)
 	} else if pilih == 2 {
 		selectionSortDesc(A, n)
 		fmt.Println("Data berhasil diurutkan descending")
+		tampilData(*A, n)
 	} else {
 		fmt.Println("Pilihan tidak valid")
 	}
 }
 
 func selectionSortArtisAZ(A *ArrMusik, n int) {
+	// IS : Data musik belum terurut berdasarkan artis.
+	// FS : Data musik terurut berdasarkan nama artis A-Z.
+
 	var min int
 	var temp Musik
 
@@ -260,6 +300,9 @@ func selectionSortArtisAZ(A *ArrMusik, n int) {
 }
 
 func selectionSortArtisZA(A *ArrMusik, n int) {
+	// IS : Data musik belum terurut berdasarkan artis.
+	// FS : Data musik terurut berdasarkan nama artis Z-A.
+
 	var max int
 	var temp Musik
 
@@ -279,6 +322,9 @@ func selectionSortArtisZA(A *ArrMusik, n int) {
 }
 
 func urutArtis(A *ArrMusik, n int) {
+	// IS : Data musik tersedia dan pengguna memilih jenis pengurutan.
+	// FS : Data musik terurut berdasarkan nama artis sesuai pilihan.
+
 	var pilih int
 
 	fmt.Println("\n1. A-Z")
@@ -289,15 +335,20 @@ func urutArtis(A *ArrMusik, n int) {
 	if pilih == 1 {
 		selectionSortArtisAZ(A, n)
 		fmt.Println("Data berhasil diurutkan A-Z")
+		tampilData(*A, n)
 	} else if pilih == 2 {
 		selectionSortArtisZA(A, n)
 		fmt.Println("Data berhasil diurutkan Z-A")
+		tampilData(*A, n)
 	} else {
 		fmt.Println("Pilihan tidak valid")
 	}
 }
 
 func isiDataAwal(A *ArrMusik, n *int) {
+	// IS : Array musik masih kosong.
+	// FS : Array terisi 10 data musik awal.
+
 	A[0] = Musik{"Always", "BonJovi", "BalladRock", 4}
 	A[1] = Musik{"FotoKitaBlur", "SalPriadi", "IndiePop", 3}
 	A[2] = Musik{"Thunder", "Seventeen", "HiphopKpop", 5}
